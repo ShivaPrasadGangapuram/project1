@@ -1,9 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  APIproject
-
-  Sample SAM Template for APIproject
+Description: Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3.
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -12,31 +9,30 @@ Globals:
     MemorySize: 128
 
 Resources:
-  HelloWorldFunction:
+  APIToS3ToDatabaseFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: hello_world/
+      FunctionName: API-S3-Database
+      Description: Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3.
+      CodeUri: Src/
       Handler: app.lambda_handler
       Runtime: python3.9
       Architectures:
         - x86_64
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /hello
-            Method: get
+      Role: arn:aws:iam::230159725500:role/lambdas3fullaccess 
+      Tracing: Active
+      MemorySize: 10240
+      Timeout: 900 
+      Layers:
+        - "arn:aws:lambda:us-east-2:230159725500:layer:requests:2"
+        - "arn:aws:lambda:us-east-2:230159725500:layer:pandas-numpy-pytz-39:1"
+        - "arn:aws:lambda:us-east-2:230159725500:layer:S3Fs39:13"
+        -  "arn:aws:lambda:us-east-2:230159725500:layer:mysql:1"
+      Environment:
+        Variables:
+          log_level : "ERROR"
 
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+  APIToS3ToDatabaseFunction:
+    Description: "Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3"
+    Value: !GetAtt APIToS3ToDatabaseFunction.Arn
