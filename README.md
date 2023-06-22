@@ -15,6 +15,7 @@
  This project is start with getting responses from earthquake and universities RESTAPI then covert that response in  a json file for create csv file in S3 bucket. Move data from csv file to staging tables. By using stored procedure moving data from staging to main tables.Loading earthquakes data Incrementally and universities data as full load. Created multiple views based on main tables data.  
 
 ### Diagram
+
 ![flowchart](Documents/picture_flowchart.png)
 
 ## Techinal Stack
