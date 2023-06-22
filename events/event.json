@@ -1,7 +1,7 @@
 {
-  "modulename" : "earthquake",
+  "modulename" : "universities",
   "country"    : ["India","China","Nepal","Pakistan"],
-  "startdate"  : "2023-04-01",
-  "enddate"    : "2023-05-01",
+  "startdate"  : "",
+  "enddate"    : "",
   "magnitude"  : "5"
 }

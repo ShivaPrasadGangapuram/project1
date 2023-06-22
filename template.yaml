@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Pull data from Earthquake,Universities REST API and loads into S3.
+Description: Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3.
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -9,11 +9,11 @@ Globals:
     MemorySize: 128
 
 Resources:
-  SrcToS3Function:
+  APIToS3ToDatabaseFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      FunctionName: Src-To-S3-V3
-      Description: Pull data from Earthquake,Universities REST API and loads json file into S3.
+      FunctionName: API-S3-Database
+      Description: Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3.
       CodeUri: Src/
       Handler: app.lambda_handler
       Runtime: python3.9
@@ -33,6 +33,6 @@ Resources:
           log_level : "ERROR"
 
 Outputs:
-  SrcToS3Function:
+  APIToS3ToDatabaseFunction:
     Description: "Pull data from Earthquake,Universities REST API and loads into AWS RDS via S3"
-    Value: !GetAtt SrcToS3Function.Arn
+    Value: !GetAtt APIToS3ToDatabaseFunction.Arn

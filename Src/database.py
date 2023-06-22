@@ -5,7 +5,7 @@ from mysql import connector
 
 
 class Db:
-    def mysql_connection(host,dbase,user,password,port):#move credentials to credentials.py and add it to gitignore
+    def mysql_connection(host,dbase,user,password,port):
         connection=connector.connect(host=host,
                                         database=dbase,
                                         user=user,

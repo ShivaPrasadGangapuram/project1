@@ -1,14 +1,17 @@
 
 -- moving data from stagging.stg_earthquake to BIDatamart.earthquake
 create procedure BIDatamart.sp_earthquake()
-begin  
-   truncate table BIDatamart.earthquake;
+begin 
+	DELETE FROM BIDatamart.earthquake where 
+	BIDatamart.earthquake.id in 
+	(SELECT staging.stg_earthquake.id from staging.stg_earthquake);
+    
    insert into BIDatamart.earthquake
       (     feature_type,
 	        id,
 	        mag,
 	        place,
-	        time,
+	        occur_time,
 	        updated,
 	        tz,
 	        url,
@@ -33,14 +36,15 @@ begin
 	        disaster_type,
 	        title,
 	        location_type,
-	        coordinates
-	  ) 
+	        coordinates,
+	        etl_processed_date
+	     ) 
    select  feature_type,
 	        id,
 	        cast(mag as float),
 	        place,
-	        time,
-	        updated ,
+	        cast(occur_time as datetime),
+	        cast(updated as datetime),
 	        tz,
 	        url,
 	        detail,
@@ -56,20 +60,19 @@ begin
 	        ids,
 	        sources,
 	        types,
-	        cast(nst as unsigned int),
+	        cast(nst as float),
 	        cast(dmin as float),
 	        cast(rms as float),
-	        cast(gap as unsigned int),
+	        cast(gap as float),
 	        magType,
 	        disaster_type,
 	        title,
 	        location_type,
-	        coordinates 
-	        from staging.stg_earthquake;	
+	        coordinates,
+	        current_timestamp
+	        from staging.stg_earthquake;
+	       	       
 end;
-
-
-
 
 
 

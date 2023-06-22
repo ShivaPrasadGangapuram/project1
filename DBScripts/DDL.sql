@@ -6,7 +6,7 @@ create table staging.stg_earthquake
     id varchar(20),
     mag varchar(5),
     place varchar(50),
-    time varchar(20),
+    occur_time varchar(20),
     updated varchar(20),
     tz varchar(10),
     url varchar(100),
@@ -32,7 +32,6 @@ create table staging.stg_earthquake
     title varchar(100),
     location_type varchar(10),
     coordinates varchar(50)
-    
    ); 
 
 create table staging.stg_universities
@@ -45,8 +44,6 @@ create table staging.stg_universities
      web_pages varchar(100)
   );
 
-
-
 ----- creating tables in BIDatamart -----
 create table BIDatamart.earthquake
   ( 
@@ -54,8 +51,8 @@ create table BIDatamart.earthquake
     id varchar(20),
     mag float(5),
     place varchar(50),
-    time varchar(20),
-    updated  varchar(20),
+    occur_time timestamp,
+    updated  timestamp,
     tz varchar(10),
     url varchar(100),
     detail varchar(200),
@@ -71,17 +68,17 @@ create table BIDatamart.earthquake
     ids varchar(100),
     sources varchar(20),
     types varchar(200),
-    nst int(10),
+    nst float(10),
     dmin float(10),
     rms float(10),
-    gap int(10),
+    gap float(10),
     magType varchar(10),
     disaster_type varchar(15),
     title varchar(100),
     location_type varchar(10),
-    coordinates varchar(50)
-    
-  );
+    coordinates varchar(50),
+    etl_processed_date timestamp
+    );
 
 create table BIDatamart.universities
  (
