@@ -21,7 +21,7 @@ Resources:
         - x86_64
       Role: arn:aws:iam::230159725500:role/lambdas3fullaccess 
       Tracing: Active
-      MemorySize: 10240
+      MemorySize: 1024
       Timeout: 900 
       Layers:
         - "arn:aws:lambda:us-east-2:230159725500:layer:requests:2"

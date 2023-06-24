@@ -1,8 +1,4 @@
 import common_function
-import json
-import requests
-import boto3
-from io import StringIO
 import pandas as pd
 import s3fs
 

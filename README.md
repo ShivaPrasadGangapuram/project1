@@ -33,5 +33,8 @@
 12. Mysql
 13. SQL
 14. AWS IAM
+15. AWS Cloudformation
+16. AWS Eventbridge
+
   
      
