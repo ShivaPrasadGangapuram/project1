@@ -34,7 +34,7 @@
 13. SQL
 14. AWS IAM
 15. AWS Cloudformation
-16. AWS Eventbridge
+16. AWS Eventbridge Scheduler
 
   
      

@@ -26,7 +26,7 @@ create view BIDatamart.vw_monthly_earthquake  as
         group by year,month
         order by year,month
     )
-                                                                    
+                                                                  
 create view BIDatamart.vw_monthly_earthquake_avg as
     (
         select  year(occur_time) as year,
