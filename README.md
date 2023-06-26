@@ -16,7 +16,7 @@
 
 ### Diagram
 
-![flowchart](Documents/picture_flowchart.png)
+![flowdiagram](Documents/picture_flowchart.png)
 
 ## Techinal Stack
 1. REST API
